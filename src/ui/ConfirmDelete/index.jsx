@@ -1,10 +1,10 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable  no-unused-vars */
 import Button from '../Button';
 import Heading from '../Heading';
 import { StyledConfirmDelete } from './style';
 
-const ConfirmDelete = ({ resource, onConfirm, disabled, closeModal }) => {
-  const handleConfirmClick = () => {};
-
+const ConfirmDelete = ({ resource, onConfirm, disabled, onCloseModal }) => {
   return (
     <StyledConfirmDelete>
       <Heading type="h3">Delete {resource}</Heading>
@@ -14,14 +14,10 @@ const ConfirmDelete = ({ resource, onConfirm, disabled, closeModal }) => {
       </p>
 
       <div>
-        <Button variation="secondary" onClick={closeModal}>
+        <Button variation="secondary" onClick={onCloseModal}>
           Cancel
         </Button>
-        <Button
-          variation="danger"
-          onClick={handleConfirmClick}
-          disabled={disabled}
-        >
+        <Button variation="danger" onClick={onConfirm} disabled={disabled}>
           Delete
         </Button>
       </div>
