@@ -1,7 +1,49 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable  no-unused-vars */
+
 import { getToday } from '../utils/helpers';
 import supabase from './supabase';
+import { PAGE_SIZE } from '../utils/constants';
 
-export const getBooking = async (id) => {
+
+export async function getBookings({ filter, sortBy, page }) {
+  let query = supabase
+    .from('bookings')
+    .select(
+      'id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)',
+      { count: 'exact' }
+    );
+
+  // FILTER
+
+  if (filter) query = query[filter.method || 'eq'](filter.field, filter.value);
+
+  // SORT
+
+  if (sortBy)
+    query = query.order(sortBy.field, {
+      ascending: sortBy.direction === 'asc',
+    });
+
+  // PAGINATION
+  if (page) {
+    const from = (page - 1) * PAGE_SIZE;
+    const to = from + PAGE_SIZE - 1
+    query = query.range(from, to)
+  }
+
+  //QUERY
+
+  const { data, error, count } = await query;
+  if (error) {
+    console.error(error);
+    throw new Error('Bookings could not be loaded');
+  }
+
+  return { data, count };
+}
+
+export async function getBooking(id) {
   const { data, error } = await supabase
     .from('bookings')
     .select('*, cabins(*), guests(*)')
@@ -17,7 +59,7 @@ export const getBooking = async (id) => {
 }
 
 // Returns all BOOKINGS that are were created after the given date. Useful to get bookings created in the last 30 days, for example.
-export const getBookingsAfterDate = async (date) => {
+export async function getBookingsAfterDate(date) {
   const { data, error } = await supabase
     .from('bookings')
     .select('created_at, totalPrice, extrasPrice')
@@ -33,7 +75,7 @@ export const getBookingsAfterDate = async (date) => {
 }
 
 // Returns all STAYS that are were created after the given date
-export const getStaysAfterDate = async (date) => {
+export async function getStaysAfterDate(date) {
   const { data, error } = await supabase
     .from('bookings')
     // .select('*')
@@ -50,7 +92,7 @@ export const getStaysAfterDate = async (date) => {
 }
 
 // Activity means that there is a check in or a check out today
-export const getStaysTodayActivity = async () => {
+export async function getStaysTodayActivity() {
   const { data, error } = await supabase
     .from('bookings')
     .select('*, guests(fullName, nationality, countryFlag)')
@@ -70,7 +112,7 @@ export const getStaysTodayActivity = async () => {
   return data;
 }
 
-export const updateBooking = async (id, obj) => {
+export async function updateBooking(id, obj) {
   const { data, error } = await supabase
     .from('bookings')
     .update(obj)
@@ -85,7 +127,7 @@ export const updateBooking = async (id, obj) => {
   return data;
 }
 
-export const deleteBooking = async (id) => {
+export async function deleteBooking(id) {
   // REMEMBER RLS POLICIES
   const { data, error } = await supabase.from('bookings').delete().eq('id', id);
 
