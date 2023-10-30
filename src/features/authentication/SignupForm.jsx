@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
-
 import { useForm } from 'react-hook-form';
 
 import Button from '../../ui/Button';

@@ -1,17 +1,13 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
-
 import { getToday } from '../utils/helpers';
 import supabase from './supabase';
 import { PAGE_SIZE } from '../utils/constants';
-
 
 export async function getBookings({ filter, sortBy, page }) {
   let query = supabase
     .from('bookings')
     .select(
       'id, created_at, startDate, endDate, numNights, numGuests, status, totalPrice, cabins(name), guests(fullName, email)',
-      { count: 'exact' }
+      { count: 'exact' },
     );
 
   // FILTER
@@ -28,8 +24,8 @@ export async function getBookings({ filter, sortBy, page }) {
   // PAGINATION
   if (page) {
     const from = (page - 1) * PAGE_SIZE;
-    const to = from + PAGE_SIZE - 1
-    query = query.range(from, to)
+    const to = from + PAGE_SIZE - 1;
+    query = query.range(from, to);
   }
 
   //QUERY

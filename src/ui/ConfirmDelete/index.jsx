@@ -1,7 +1,6 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
 import Button from '../Button';
 import Heading from '../Heading';
+import PropTypes from 'prop-types';
 import { StyledConfirmDelete } from './style';
 
 const ConfirmDelete = ({ resource, onConfirm, disabled, onCloseModal }) => {
@@ -23,6 +22,13 @@ const ConfirmDelete = ({ resource, onConfirm, disabled, onCloseModal }) => {
       </div>
     </StyledConfirmDelete>
   );
+};
+
+ConfirmDelete.propTypes = {
+  resource: PropTypes.object,
+  onConfirm: PropTypes.func,
+  disabled: PropTypes.bool,
+  onCloseModal: PropTypes.func,
 };
 
 export default ConfirmDelete;

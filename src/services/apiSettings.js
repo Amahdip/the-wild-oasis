@@ -8,7 +8,7 @@ export const getSettings = async () => {
     throw new Error('Settings could not be loaded');
   }
   return data;
-}
+};
 
 // We expect a newSetting object that looks like {setting: newValue}
 export const updateSetting = async (newSetting) => {
@@ -24,4 +24,4 @@ export const updateSetting = async (newSetting) => {
     throw new Error('Settings could not be updated');
   }
   return data;
-}
+};

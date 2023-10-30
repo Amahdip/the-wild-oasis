@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
 import { StyledFormRow, Label, Error } from './style';
 
 function FormRow({ label, error, children }) {

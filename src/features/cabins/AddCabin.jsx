@@ -18,18 +18,3 @@ const AddCabin = () => {
 };
 
 export default AddCabin;
-
-// const [isOpenModal, setIsOpenModal] = useState(false);
-//   return (
-//     <div>
-//       <Button onClick={() => setIsOpenModal((open) => !open)}>
-//         Add new Cabin
-//       </Button>
-//       {isOpenModal && (
-//         <Modal onClose={() => setIsOpenModal(false)}>
-//           <CreateCabinForm onCloseModal={() => setIsOpenModal(false)} />
-//         </Modal>
-//       )}
-//     </div>
-//   );
-// };

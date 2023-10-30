@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
-
 import BookingRow from './BookingRow';
 import Table from '../../ui/Table';
 import Menus from '../../ui/Menus';

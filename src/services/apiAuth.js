@@ -42,23 +42,23 @@ export const signup = async ({ fullName, email, password }) => {
   return data;
 };
 
-
 export const updateCurrentUser = async ({ password, fullName, avatar }) => {
   let updateData;
-  if (!password) updateData = { password }
-  if (fullName) updateData = { data: { fullName } }
+  if (!password) updateData = { password };
+  if (fullName) updateData = { data: { fullName } };
 
-  const { data, error } = await supabase.auth.updateUser(updateData)
+  const { data, error } = await supabase.auth.updateUser(updateData);
 
   if (error) throw new Error(error.message);
-  if (!avatar) return data
+  if (!avatar) return data;
 
   // 2. Upload the avatar image
 
-  const fileName = `avatar-${data.user.id}-${Math.random()}`
-  const { storageError } = await supabase.storage.from("avatars").upload(fileName, avatar)
+  const fileName = `avatar-${data.user.id}-${Math.random()}`;
+  const { storageError } = await supabase.storage
+    .from('avatars')
+    .upload(fileName, avatar);
   if (storageError) throw new Error(storageError.message);
-
 
   // 3. Update avatar in the user
   const { data: updatedUser, error: error2 } = await supabase.auth.updateUser({
@@ -69,7 +69,4 @@ export const updateCurrentUser = async ({ password, fullName, avatar }) => {
 
   if (error2) throw new Error(error2.message);
   return updatedUser;
-
-
-
-}
+};

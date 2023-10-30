@@ -1,6 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
-
 import styled from 'styled-components';
 
 import BookingDataBox from './BookingDataBox';

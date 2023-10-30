@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
 import { HiChevronLeft, HiChevronRight } from 'react-icons/hi2';
 import { StyledPagination, P, Buttons, PaginationButton } from './style.ts';
 import { useSearchParams } from 'react-router-dom';

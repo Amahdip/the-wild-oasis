@@ -14,8 +14,8 @@ const DataItem = ({ icon, label, children }) => {
 };
 
 DataItem.propTypes = {
-  // icon: PropTypes.,
-  // label: PropTypes.func,
+  icon: PropTypes.string,
+  label: PropTypes.string,
   children: PropTypes.node,
 };
 

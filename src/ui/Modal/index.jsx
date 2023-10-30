@@ -1,5 +1,3 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable  no-unused-vars */
 import { HiXMark } from 'react-icons/hi2';
 import { Button, Overlay, StyledModal } from './style.ts';
 import { createPortal } from 'react-dom';

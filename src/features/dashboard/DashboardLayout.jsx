@@ -1,12 +1,13 @@
 import styled from 'styled-components';
 import { useRecentStays } from './useRecentStays';
 import { useRecentBookings } from './useRecentBookings';
-import Spinner from '../../ui/Spinner';
 import Stats from './Stats';
-import { useCabins } from '../cabins/useCabins';
 import SalesChart from './SalesChart';
 import DurationChart from './DurationChart';
+import { useCabins } from '../cabins/useCabins';
 import TodayActivity from '../check-in-out/TodayActivity';
+
+import Spinner from '../../ui/Spinner';
 
 const StyledDashboardLayout = styled.div`
   display: grid;

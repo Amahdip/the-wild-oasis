@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDarkMode } from '../context/DarkModeContext';
+import { useDarkMode } from '../hooks/useDarkMode';
 import ButtonIcon from './ButtonIcon';
 import { HiOutlineMoon, HiOutlineSun } from 'react-icons/hi2';
 
